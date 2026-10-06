@@ -1,42 +1,47 @@
-// Tout le contenu est ici. Remplace les valeurs, pas la structure.
+import cv_Lorelle from "../public/cv_Lorelle_web.pdf";
+
 export const profile = {
   name: "Lorelle",
-  role: "Développeuse frontend, étudiante ingénieure",
+  role: "Élève ingénieure",
   tagline:
     "Je développe des interfaces web en React, de l'audit Microsoft 365 à la détection de maladies du cacao, et je les relie à des API Python.",
   about:
-    "Étudiante ingénieure en double diplôme à l'ENSEEIHT, après le Génie informatique à l'ENSPY de Yaoundé. Je sépare le travail d'interface de l'intégration avec le backend, et je soigne les deux.",
+    "Étudiante ingénieure en double diplôme à l'ENSEEIHT, après un cursus d'ingénieur à l'ENSPY de Yaoundé. Je m'intéresse aux systèmes informatiques, aux réseaux, à l'interconnectivité et aux systèmes embarqués. Je suis passionnée par le développement web, l'intelligence artificielle, l'IoT et la cybersécurité.",
   email: "lorelngoumi@gmail.com",
   github: "https://github.com/Lorel12",
   linkedin: "https://linkedin.com/in/lorelle-ngoumi",
-  cv: "/cv.pdf", // à déposer dans public/cv.pdf
+  tel: "+33 7 80 80 65 92",
+  cv: cv_Lorelle, 
 };
 
-export const timeline = [
+export const formations = [
   {
-    period: "Actuellement",
+    period: "2026 - 2028",
     title: "Double diplôme, ENSEEIHT",
     place: "Toulouse",
-    text: "Cursus ingénieur avec une orientation numérique et télécommunications.",
+    text: "Cursus ingénieur, 2ème année en Sciences du Numérique, parcours Réseaux.",
   },
+  {
+    period: "2022 - 2026",
+    title: "Génie informatique, ENSPY",
+    place: "Yaoundé",
+    text: "Formation d'ingénieur en Art et Intelligence Artificielle",
+  },
+];
+
+export const experiences = [
   {
     period: "Stage",
     title: "Stage informatique, MINEPAT (DGEPIP)",
     place: "Yaoundé",
-    text: "Développement d'une application Flask de collecte et d'analyse d'informations économiques.",
-  },
-  {
-    period: "Avant",
-    title: "Génie informatique, ENSPY",
-    place: "Yaoundé",
-    text: "Formation d'ingénieur : développement logiciel, apprentissage automatique, projets d'équipe.",
+    text: "Développement d'une application Flask d'analyse d'informations et de prévisions économiques.",
   },
 ];
 
 export const projects = [
   {
-    title: "Zelynto",
-    context: "Frontend, en cours",
+    title: "Valione Services, Mars 2026 - Août 2026",
+    context: "Zelynto",
     text: "Application de gestion et d'audit Microsoft 365. Je conçois les composants d'interface et le tableau de bord d'audit.",
     tags: ["React", "TypeScript", "Microsoft 365"],
     link: "",
@@ -60,6 +65,6 @@ export const projects = [
 export const skills = [
   { group: "Frontend", items: ["React", "TypeScript", "JavaScript", "CSS", "Design responsive"] },
   { group: "Backend et données", items: ["Python", "Flask", "FastAPI", "PostgreSQL"] },
-  { group: "IA", items: ["YOLOv8", "Vision par ordinateur"] },
+  { group: "IA", items: ["YOLOv8", "Vision par ordinateur", "PyTorch", "TensorFlow"] },
   { group: "Outils", items: ["Git", "LaTeX", "Microsoft 365"] },
 ];
