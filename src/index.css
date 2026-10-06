@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+:root {
+  --nav-h: 4.5rem;
+  --radius: 0.75rem;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-title: "Space Grotesk", "Inter", sans-serif;
+  --accent-1: #8b5cf6;
+  --accent-2: #22d3ee;
+}
+:root[data-theme="dark"] {
+  --bg: #0a0b10; --surface: #12141c; --surface-strong: #1a1d28;
+  --border: rgba(255, 255, 255, 0.1); --text: #f3f4f8; --muted: #a1a6b8;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f6f6fb; --surface: #ffffff; --surface-strong: #ececf5;
+  --border: rgba(20, 20, 40, 0.12); --text: #14141f; --muted: #5b5f73;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; }
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 0.2rem; }
+
+/* Navigation */
+.nav {
+  position: sticky; top: 0; z-index: 10; height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0 clamp(1rem, 5vw, 4rem);
+  background: var(--bg); border-bottom: 1px solid var(--border);
+}
+.logo { font-family: var(--font-title); font-weight: 700; font-size: 1.3rem; }
+.nav nav { display: flex; gap: 1.5rem; }
+.nav nav a { color: var(--muted); font-size: 0.95rem; }
+.nav nav a:hover { color: var(--text); }
+@media (max-width: 48rem) { .nav nav { display: none; } }
+.theme-btn {
+  padding: 0.45rem 0.9rem; border-radius: 99rem; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font: 500 0.85rem var(--font-body);
+}
+.theme-btn:hover { border-color: var(--accent-1); }
+
+/* Mise en page */
+main { max-width: 70rem; margin: 0 auto; padding: 0 clamp(1rem, 5vw, 2rem); }
+.section { padding: clamp(3rem, 8vw, 6rem) 0; }
+.hero { padding: clamp(4rem, 12vw, 9rem) 0 clamp(2rem, 6vw, 4rem); }
+h1 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 700; letter-spacing: -0.03em; }
+.hero h2 { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 500; color: var(--muted); margin: 1rem 0; }
+.lead { max-width: 42rem; color: var(--muted); font-size: clamp(1rem, 2vw, 1.15rem); }
+.title { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+
+/* Boutons */
+.actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+.btn { padding: 0.8rem 1.5rem; border-radius: 99rem; font-weight: 500; border: 1px solid var(--border); background: var(--surface); }
+.btn:hover { border-color: var(--accent-1); }
+.btn.primary { background: var(--accent-1); border-color: var(--accent-1); color: #fff; }
+.btn.primary:hover { filter: brightness(1.1); }
+
+/* Cartes */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+.card h4 { font-size: 1.25rem; margin: 0.4rem 0; }
+.card p { color: var(--muted); }
+.card small { color: var(--accent-2); font-weight: 500; }
+.grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.chip { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 99rem; font-size: 0.8rem; background: var(--surface-strong); border: 1px solid var(--border); }
+.more { display: inline-block; margin-top: 1rem; color: var(--accent-2); font-weight: 500; }
+.more:hover { text-decoration: underline; text-underline-offset: 0.2rem; }
+
+.timeline { list-style: none; padding: 0; display: grid; gap: 1.25rem; }
+.timeline .chip { margin-bottom: 0.5rem; }
+.cta { text-align: center; padding: clamp(2rem, 6vw, 4rem); }
+.cta .lead { margin: 0 auto; }
+.cta .actions { justify-content: center; }
+.footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 2rem 1rem 3rem; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
