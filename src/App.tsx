@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { profile, formations, experiences, projects, skills } from "./data";
+import { ArrowDownToLine, ArrowUp, ExternalLink, Mail, Moon, MoveUpRight, Phone, Sun } from "lucide-react";
 import "./index.css";
 
 const links = [
@@ -51,7 +52,7 @@ export default function App() {
     <>
       <header className="nav">
         <a href="#top" className="logo" aria-label={`${profile.name}, accueil`}>
-          <span className="logo-mark">L</span>{profile.name}<span className="logo-period">.</span>
+          <span className="logo-mark">L</span>{profile.name}<span className="logo-period"></span>
         </a>
         <nav aria-label="Navigation principale">
           {links.map(([id, label]) => (
@@ -59,7 +60,7 @@ export default function App() {
           ))}
         </nav>
         <button className="theme-btn" aria-label={theme === "dark" ? "Activer le thème clair" : "Activer le thème sombre"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-          <span className="theme-icon" aria-hidden="true">{theme === "dark" ? "☼" : "◐"}</span>
+          <span className="theme-icon" aria-hidden="true">{theme === "dark" ? <Sun className="icon icon-theme" /> : <Moon className="icon icon-theme" />}</span>
           <span>{theme === "dark" ? "Clair" : "Sombre"}</span>
         </button>
       </header>
@@ -67,26 +68,24 @@ export default function App() {
       <main id="top">
         <section className="hero">
           <div className="hero-copy reveal">
-            <p className="eyebrow"><span className="availability-dot" />Portfolio 2026 <span className="eyebrow-divider">/</span> Développement web & IA</p>
-            <h1>{profile.name}<span className="hero-period">.</span></h1>
-            <h2>{profile.role}</h2>
+            <p className="eyebrow"><span className="availability-dot" />{profile.role}</p>
+            <h1>{profile.name}</h1>
             <p className="lead">{profile.tagline}</p>
             <div className="actions">
-              <a className="btn primary" href="#projets">Découvrir mes projets <span aria-hidden="true">↗</span></a>
-              <a className="btn secondary" href={profile.cv} download><span aria-hidden="true">↓</span> Télécharger le CV</a>
+              <a className="btn primary" href="#projets">Découvrir mes projets <MoveUpRight className="icon" aria-hidden="true" /></a>
+              <a className="btn secondary" href={profile.cv} target="_blank" download><ArrowDownToLine className="icon" aria-hidden="true" /> Télécharger le CV</a>
             </div>
           </div>
           <aside className="hero-panel reveal" aria-label="Domaines de travail">
             <div className="panel-topline"><span>MON TERRAIN DE JEU</span><span>01 — 03</span></div>
             <p className="panel-statement">Des idées<br />aux <em>interfaces.</em></p>
             <div className="panel-list">
-              <div><span>01</span><span>Interfaces web</span><span>↗</span></div>
-              <div><span>02</span><span>API & données</span><span>↗</span></div>
-              <div><span>03</span><span>Vision par ordinateur</span><span>↗</span></div>
+              <div><span>01</span><span>Interfaces web</span><MoveUpRight className="icon icon-small" aria-hidden="true" /></div>
+              <div><span>02</span><span>API & données</span><MoveUpRight className="icon icon-small" aria-hidden="true" /></div>
+              <div><span>03</span><span>Vision par ordinateur</span><MoveUpRight className="icon icon-small" aria-hidden="true" /></div>
             </div>
             <span className="panel-orbit" aria-hidden="true">L</span>
           </aside>
-          <a className="scroll-cue" href="#about"><span />Faire défiler</a>
         </section>
 
         <section id="about" className="section">
@@ -114,13 +113,15 @@ export default function App() {
           <div id="experiences" className="career-block">
             <div className="career-heading reveal">
               <div><span className="career-eyebrow">EXPÉRIENCE PROFESSIONNELLE</span><h4>Stages et missions</h4></div>
-              <span className="career-count">{String(experiences.length).padStart(2, "0")} expérience</span>
+              <span className="career-count">
+                {String(experiences.length).padStart(2, "0")} expérience{experiences.length > 1 ? "s" : ""}
+              </span>
             </div>
             <ol className="timeline">
               {experiences.map((item, index) => (
                 <li key={item.title} className="timeline-item reveal">
                   <span className="timeline-number">{String(index + 1).padStart(2, "0")}</span>
-                  <div className="timeline-main"><span className="chip">{item.period}</span><h4>{item.title}</h4><small>{item.place}</small></div>
+                  <div className="timeline-main"><h5>{item.title}</h5><small>{item.place}</small></div>
                   <p>{item.text}</p>
                 </li>
               ))}
@@ -142,7 +143,7 @@ export default function App() {
                     <span key={t} className="chip">{t}</span>
                   ))}
                 </div>
-                {p.link && <a className="more" href={p.link}>Voir le projet</a>}
+                {p.link && <a className="more" href={p.link}>Voir le projet <ExternalLink className="icon icon-small" aria-hidden="true" /></a>}
               </article>
             ))}
           </div>
@@ -170,16 +171,16 @@ export default function App() {
             <h3 className="title">On imagine la suite<br /><em>ensemble ?</em></h3>
             <p className="lead">Pour un stage, un projet ou une question, écrivez-moi.</p>
             <div className="actions">
-              <a className="btn primary" href={`mailto:${profile.email}`}>Envoyer un email <span aria-hidden="true">↗</span></a>
+              <a className="btn primary" href={`mailto:${profile.email}`}><Mail className="icon" aria-hidden="true" />Envoyer un email</a>
               <a className="btn" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
               <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-              <a className="btn" href={`tel:${profile.tel}`} target="_blank" rel="noreferrer">Téléphone</a>
+              <a className="btn" href={`tel:${profile.tel.replace(/\s/g, "")}`}><Phone className="icon" aria-hidden="true" />Téléphone</a>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="footer"><a href="#top" className="footer-brand">{profile.name}<span className="hero-period"></span></a><span>© {new Date().getFullYear()} — Copyright</span><a href="#top" className="back-top">Retour en haut ↑</a></footer>
+      <footer className="footer"><a href="#top" className="footer-brand">{profile.name}<span className="hero-period">.</span></a><span>© {new Date().getFullYear()} — Copyright</span><a href="#top" className="back-top">Retour en haut <ArrowUp className="icon icon-small" aria-hidden="true" /></a></footer>
     </>
   );
 }

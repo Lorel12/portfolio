@@ -1,31 +1,29 @@
-import cv_Lorelle from "../public/cv_Lorelle_web.pdf";
-
 export const profile = {
   name: "Lorelle",
   role: "Élève ingénieure",
   tagline:
-    "Je développe des interfaces web en React, de l'audit Microsoft 365 à la détection de maladies du cacao, et je les relie à des API Python.",
+    "Curieuse et polyvalente, je m'intéresse particulièrement à l'intersection entre le développement web, l'IA et la cybersécurité.",
   about:
     "Étudiante ingénieure en double diplôme à l'ENSEEIHT, après un cursus d'ingénieur à l'ENSPY de Yaoundé. Je m'intéresse aux systèmes informatiques, aux réseaux, à l'interconnectivité et aux systèmes embarqués. Je suis passionnée par le développement web, l'intelligence artificielle, l'IoT et la cybersécurité.",
   email: "lorelngoumi@gmail.com",
   github: "https://github.com/Lorel12",
   linkedin: "https://linkedin.com/in/lorelle-ngoumi",
   tel: "+33 7 80 80 65 92",
-  cv: cv_Lorelle, 
+  cv: "/cv_Lorelle_web.pdf",
 };
 
 export const formations = [
   {
-    period: "2026 - 2028",
-    title: "Double diplôme, ENSEEIHT",
-    place: "Toulouse",
-    text: "Cursus ingénieur, 2ème année en Sciences du Numérique, parcours Réseaux.",
-  },
-  {
     period: "2022 - 2026",
     title: "Génie informatique, ENSPY",
-    place: "Yaoundé",
+    place: "Yaoundé, Cameroun",
     text: "Formation d'ingénieur en Art et Intelligence Artificielle",
+  },
+  {
+    period: "2026 - 2028",
+    title: "Double diplôme, ENSEEIHT",
+    place: "Toulouse, France",
+    text: "Cursus ingénieur, 2ème année en Sciences du Numérique, parcours Réseaux.",
   },
 ];
 
@@ -36,6 +34,18 @@ export const experiences = [
     place: "Yaoundé",
     text: "Développement d'une application Flask d'analyse d'informations et de prévisions économiques.",
   },
+  {
+    period: "Stage",
+    title: "Stage informatique, Zelynto",
+    place: "Yaoundé",
+    text: "Développement d'une application web de gestion et d'audit Microsoft 365.",
+  },
+  {
+    period: "Enseignement",
+    title: "Enseignante à Intelligentsia Corporation",
+    place: "Yaoundé",
+    text: "Encadrement et préparation d'élèves aux concours d'entrée dans les grandes écoles d'ingénieurs du Cameroun (ENSPY, ENSPD, ENSTP...)."
+  }
 ];
 
 export const projects = [
