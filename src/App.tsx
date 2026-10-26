@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { profile, formations, experiences, projects, skills } from "./data";
-import { ArrowDownToLine, ArrowUp, ExternalLink, Mail, Moon, MoveUpRight, Phone, Sun } from "lucide-react";
+import { ArrowDownToLine, ArrowUp, ExternalLink, FileText, Mail, Moon, MoveUpRight, Phone, Sun, X } from "lucide-react";
 import { copy, englishExperiences, englishFormations, englishProjects, englishSkills, type Language } from "./locales";
 import "./index.css";
 
@@ -15,6 +15,9 @@ export default function App() {
   const displayedExperiences = language === "en" ? englishExperiences : experiences;
   const displayedProjects = language === "en" ? englishProjects : projects;
   const displayedSkills = language === "en" ? englishSkills : skills;
+  const cvUrl = language === "en" ? "/cv_Lorelle_web_en.pdf" : profile.cv;
+  const [cvOpen, setCvOpen] = useState(false);
+  const cvDialogRef = useRef<HTMLDialogElement>(null);
   const [theme, setTheme] = useState(
     () =>
       localStorage.getItem("theme") ||
@@ -30,6 +33,14 @@ export default function App() {
     document.documentElement.lang = language;
     localStorage.setItem("language", language);
   }, [language]);
+
+  useEffect(() => {
+    const dialog = cvDialogRef.current;
+    if (!dialog) return;
+
+    if (cvOpen && !dialog.open) dialog.showModal();
+    if (!cvOpen && dialog.open) dialog.close();
+  }, [cvOpen]);
 
   useEffect(() => {
     const targets = document.querySelectorAll(".reveal");
@@ -54,7 +65,7 @@ export default function App() {
       observer.disconnect();
       document.documentElement.classList.remove("motion-ready");
     };
-  }, []);
+  }, [language]);
 
   return (
     <>
@@ -88,17 +99,9 @@ export default function App() {
             <p className="lead">{language === "en" ? "Curious and versatile, I am especially interested in the intersection of web development, AI and cybersecurity." : profile.tagline}</p>
             <div className="actions">
               <a className="btn primary" href="#projets">{text.heroPrimary} <MoveUpRight className="icon" aria-hidden="true" /></a>
-              <a className="btn secondary" href={language === "en" ? "/cv_Lorelle_web_en.pdf" : profile.cv} download={language === "en" ? "Lorelle-CV-English.pdf" : "Lorelle-CV-Francais.pdf"}><ArrowDownToLine className="icon" aria-hidden="true" /> {text.heroCv}</a>
+              <button className="btn secondary" type="button" onClick={() => setCvOpen(true)}><FileText className="icon" aria-hidden="true" /> {text.cvPreviewLink}</button>
             </div>
           </div>
-          <aside className="hero-panel reveal" aria-label={text.heroPanelLabel}>
-            <div className="panel-topline"><span>{text.panelTitle}</span><span>01 — 03</span></div>
-            <p className="panel-statement">{text.panelStatement}</p>
-            <div className="panel-list">
-              {text.domains.map((domain, index) => <div key={domain}><span>0{index + 1}</span><span>{domain}</span><MoveUpRight className="icon icon-small" aria-hidden="true" /></div>)}
-            </div>
-            <span className="panel-orbit" aria-hidden="true">L</span>
-          </aside>
         </section>
 
         <section id="about" className="section">
@@ -189,6 +192,31 @@ export default function App() {
           </div>
         </section>
       </main>
+
+      <dialog
+        ref={cvDialogRef}
+        className="cv-dialog"
+        aria-labelledby="cv-dialog-title"
+        onClose={() => setCvOpen(false)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) cvDialogRef.current?.close();
+        }}
+      >
+        <div className="cv-dialog-header">
+          <h2 id="cv-dialog-title">{text.cvPreviewTitle}</h2>
+          <button className="cv-dialog-close" type="button" aria-label={text.closePreview} onClick={() => cvDialogRef.current?.close()}>
+            <X className="icon" aria-hidden="true" />
+          </button>
+        </div>
+        {cvOpen && (
+          <iframe key={language} className="cv-document" src={`${cvUrl}#view=FitH`} title={text.cvPreviewLabel} loading="lazy">
+            <a href={cvUrl}>{text.cvPreviewFallback}</a>
+          </iframe>
+        )}
+        <a className="btn primary cv-download" href={cvUrl} download={language === "en" ? "Lorelle-CV-English.pdf" : "Lorelle-CV-Francais.pdf"}>
+          <ArrowDownToLine className="icon" aria-hidden="true" />{text.heroCv}
+        </a>
+      </dialog>
 
       <footer className="footer"><a href="#top" className="footer-brand">{profile.name}<span className="hero-period">.</span></a><span>© {new Date().getFullYear()} — {text.copyright}</span><a href="#top" className="back-top">{text.backToTop} <ArrowUp className="icon icon-small" aria-hidden="true" /></a></footer>
     </>
