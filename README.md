@@ -1,75 +1,45 @@
-# React + TypeScript + Vite
+# Portfolio de Lorelle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio bilingue (français/anglais) réalisé avec React, TypeScript et Vite.
 
-Currently, two official plugins are available:
+## Prérequis
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20.19+ ou 22.12+
+- npm
 
-## React Compiler
+## Installation et développement
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Vite affiche l'adresse locale à ouvrir dans le navigateur.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Vérifications et build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm run lint
+npm run build
+npm run preview
 ```
+
+Le build de production est généré dans `dist/`.
+
+## Publication sur GitHub Pages
+
+Le projet est configuré pour être publié sous `/portfolio/`.
+
+```sh
+npm run deploy
+```
+
+Cette commande construit le site puis publie `dist/` sur la branche `gh-pages`. Pour le publier à la racine d'un autre domaine, adaptez la propriété `base` de `vite.config.ts`.
+
+## Contenu
+
+- `src/data.ts` contient les coordonnées et le contenu français.
+- `src/locales.ts` contient les textes de l'interface et les traductions anglaises.
+- `public/cv_Lorelle_web.pdf` et `public/cv_Lorelle_web_en.pdf` sont les CV affichés dans l'aperçu et proposés au téléchargement.
+
+Conservez les deux CV dans `public/` et gardez leurs noms de fichiers synchronisés avec `src/App.tsx`.
