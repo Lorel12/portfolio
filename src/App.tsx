@@ -15,7 +15,8 @@ export default function App() {
   const displayedExperiences = language === "en" ? englishExperiences : experiences;
   const displayedProjects = language === "en" ? englishProjects : projects;
   const displayedSkills = language === "en" ? englishSkills : skills;
-  const cvUrl = language === "en" ? "/cv_Lorelle_web_en.pdf" : profile.cv;
+  const cvFileName = language === "en" ? "CV_Web_En.pdf" : "cv_Lorelle_web.pdf";
+  const cvUrl = `${import.meta.env.BASE_URL}${cvFileName}`;
   const [cvOpen, setCvOpen] = useState(false);
   const cvDialogRef = useRef<HTMLDialogElement>(null);
   const [theme, setTheme] = useState(
@@ -27,12 +28,15 @@ export default function App() {
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("theme", theme);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#111419" : "#f2f5fa");
   }, [theme]);
 
   useEffect(() => {
     document.documentElement.lang = language;
     localStorage.setItem("language", language);
-  }, [language]);
+    document.title = `${profile.name} — ${text.heroEyebrow}`;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", text.metaDescription);
+  }, [language, text.heroEyebrow, text.metaDescription]);
 
   useEffect(() => {
     const dialog = cvDialogRef.current;
@@ -96,7 +100,7 @@ export default function App() {
           <div className="hero-copy reveal">
             <p className="eyebrow"><span className="availability-dot" />{text.heroEyebrow}</p>
             <h1>{profile.name}</h1>
-            <p className="lead">{language === "en" ? "Curious and versatile, I am especially interested in the intersection of web development, AI and cybersecurity." : profile.tagline}</p>
+            <p className="lead">{text.heroLead}</p>
             <div className="actions">
               <a className="btn primary" href="#projets">{text.heroPrimary} <MoveUpRight className="icon" aria-hidden="true" /></a>
               <button className="btn secondary" type="button" onClick={() => setCvOpen(true)}><FileText className="icon" aria-hidden="true" /> {text.cvPreviewLink}</button>
@@ -106,7 +110,7 @@ export default function App() {
 
         <section id="about" className="section">
           <div className="section-heading reveal"><span className="section-index">{text.aboutIndex}</span><h3 className="title">{text.aboutTitle}</h3></div>
-          <div className="about-copy reveal"><p className="lead">{language === "en" ? "I am pursuing a double engineering degree at Toulouse INP–ENSEEIHT, after studying Computer Engineering at ENSPY in Yaoundé. I am interested in computer systems, networks, connectivity and embedded systems, as well as web development, artificial intelligence, IoT and cybersecurity." : profile.about}</p></div>
+          <div className="about-copy reveal"><p className="lead">{text.aboutDescription}</p></div>
         </section>
 
         <section id="parcours" className="section">
@@ -130,14 +134,14 @@ export default function App() {
             <div className="career-heading reveal">
               <div><span className="career-eyebrow">{text.experienceLabel}</span><h4>{text.experienceTitle}</h4></div>
               <span className="career-count">
-                {String(displayedExperiences.length).padStart(2, "0")} {text.experienceCount}{language === "fr" && displayedExperiences.length > 1 ? "s" : ""}
+                {String(displayedExperiences.length).padStart(2, "0")} {text.experienceCount}
               </span>
             </div>
             <ol className="timeline">
               {displayedExperiences.map((item, index) => (
                 <li key={item.title} className="timeline-item reveal">
                   <span className="timeline-number">{String(index + 1).padStart(2, "0")}</span>
-                  <div className="timeline-main"><h5>{item.title}</h5><small>{item.place}</small></div>
+                  <div className="timeline-main"><span className="chip">{item.period}</span><h4>{item.title}</h4><small>{item.place}</small></div>
                   <p>{item.text}</p>
                 </li>
               ))}
