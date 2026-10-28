@@ -1,15 +1,9 @@
 export const profile = {
   name: "Lorelle",
-  role: "Élève ingénieure",
-  tagline:
-    "Curieuse et polyvalente, je m'intéresse particulièrement à l'intersection entre le développement web, l'IA et la cybersécurité.",
-  about:
-    "Étudiante ingénieure en double diplôme à l'ENSEEIHT, après un cursus d'ingénieur à l'ENSPY de Yaoundé. Je m'intéresse aux systèmes informatiques, aux réseaux, à l'interconnectivité et aux systèmes embarqués. Je suis passionnée par le développement web, l'intelligence artificielle, l'IoT et la cybersécurité.",
   email: "lorelngoumi@gmail.com",
   github: "https://github.com/Lorel12",
   linkedin: "https://linkedin.com/in/lorelle-ngoumi",
   tel: "+33 7 80 80 65 92",
-  cv: "/cv_Lorelle_web.pdf",
 };
 
 export const formations = [
@@ -17,13 +11,13 @@ export const formations = [
     period: "2022 - 2026",
     title: "Génie informatique, ENSPY",
     place: "Yaoundé, Cameroun",
-    text: "Formation d'ingénieur en Art et Intelligence Artificielle",
+    text: "Formation d'ingénieure en génie informatique, avec une spécialisation en intelligence artificielle.",
   },
   {
     period: "2026 - 2028",
     title: "Double diplôme, ENSEEIHT",
     place: "Toulouse, France",
-    text: "Cursus ingénieur, 2ème année en Sciences du Numérique, parcours Réseaux.",
+    text: "Cursus ingénieur en sciences du numérique, spécialité réseaux.",
   },
 ];
 
