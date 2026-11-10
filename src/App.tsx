@@ -1,10 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { profile, formations, experiences, projects, skills } from "./data";
-import { ArrowDownToLine, ArrowUp, ExternalLink, FileText, Mail, Moon, MoveUpRight, Phone, Sun, X } from "lucide-react";
-import { copy, englishExperiences, englishFormations, englishProjects, englishSkills, type Language } from "./locales";
+import { profile, formations, experiences, projects, skills, engagements, distinctions, certifications } from "./data";
+import { ArrowDownToLine, ArrowUp, Award, ExternalLink, FileText, Heart, Mail, MapPin, Moon, MoveUpRight, Phone, Sun, X } from "lucide-react";
+import {
+  copy,
+  englishCertifications,
+  englishDistinctions,
+  englishEngagements,
+  englishExperiences,
+  englishFormations,
+  englishProjects,
+  englishSkills,
+  type Language,
+} from "./locales";
 import "./index.css";
 
-const linkIds = ["about", "parcours", "projets", "competences", "contact"];
+const linkIds = ["about", "parcours", "projets", "engagements", "competences", "contact"];
+const filterIds = ["all", "ia", "web", "reseaux"];
+const statValues = ["3", "2", "2", String(projects.length)];
 
 export default function App() {
   const [language, setLanguage] = useState<Language>(
@@ -14,7 +26,12 @@ export default function App() {
   const displayedFormations = language === "en" ? englishFormations : formations;
   const displayedExperiences = language === "en" ? englishExperiences : experiences;
   const displayedProjects = language === "en" ? englishProjects : projects;
+  const displayedEngagements = language === "en" ? englishEngagements : engagements;
+  const displayedDistinctions = language === "en" ? englishDistinctions : distinctions;
+  const displayedCertifications = language === "en" ? englishCertifications : certifications;
   const displayedSkills = language === "en" ? englishSkills : skills;
+  const [filter, setFilter] = useState("all");
+  const visibleProjects = displayedProjects.filter((p) => filter === "all" || p.categories.includes(filter));
   const cvFileName = language === "en" ? "CV_Web_En.pdf" : "cv_Lorelle_web.pdf";
   const cvUrl = `${import.meta.env.BASE_URL}${cvFileName}`;
   const [cvOpen, setCvOpen] = useState(false);
@@ -28,15 +45,15 @@ export default function App() {
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem("theme", theme);
-    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#111419" : "#f2f5fa");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#0c0d10" : "#f7f7f5");
   }, [theme]);
 
   useEffect(() => {
     document.documentElement.lang = language;
     localStorage.setItem("language", language);
-    document.title = `${profile.name} — ${text.heroEyebrow}`;
+    document.title = `${profile.name} ${profile.surname} — ${text.docTitle}`;
     document.querySelector('meta[name="description"]')?.setAttribute("content", text.metaDescription);
-  }, [language, text.heroEyebrow, text.metaDescription]);
+  }, [language, text.docTitle, text.metaDescription]);
 
   useEffect(() => {
     const dialog = cvDialogRef.current;
@@ -69,7 +86,7 @@ export default function App() {
       observer.disconnect();
       document.documentElement.classList.remove("motion-ready");
     };
-  }, [language]);
+  }, [language, filter]);
 
   return (
     <>
@@ -99,18 +116,41 @@ export default function App() {
         <section className="hero">
           <div className="hero-copy reveal">
             <p className="eyebrow"><span className="availability-dot" />{text.heroEyebrow}</p>
-            <h1>{profile.name}</h1>
+            <h1>{profile.name}<span className="surname">{profile.surname}</span></h1>
             <p className="lead">{text.heroLead}</p>
             <div className="actions">
               <a className="btn primary" href="#projets">{text.heroPrimary} <MoveUpRight className="icon" aria-hidden="true" /></a>
               <button className="btn secondary" type="button" onClick={() => setCvOpen(true)}><FileText className="icon" aria-hidden="true" /> {text.cvPreviewLink}</button>
+              <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
           </div>
+          <figure className="portrait reveal">
+            <img
+              src={profile.portrait}
+              alt={text.portraitAlt}
+              onError={(event) => { event.currentTarget.style.display = "none"; }}
+            />
+            <figcaption>
+              <span><MapPin className="icon icon-small" aria-hidden="true" />{text.portraitLocation}</span>
+              <span>{text.portraitMobility}</span>
+            </figcaption>
+          </figure>
         </section>
+
+        <div className="stats reveal">
+          {text.statLabels.map((label, index) => (
+            <div key={label} className="stat"><strong>{statValues[index]}</strong><span>{label}</span></div>
+          ))}
+        </div>
 
         <section id="about" className="section">
           <div className="section-heading reveal"><span className="section-index">{text.aboutIndex}</span><h3 className="title">{text.aboutTitle}</h3></div>
-          <div className="about-copy reveal"><p className="lead">{text.aboutDescription}</p></div>
+          <div className="about-copy reveal">
+            <div>
+              <p className="lead">{text.aboutDescription}</p>
+              <div className="tags about-tags">{text.aboutFocus.map((item) => <span key={item} className="chip">{item}</span>)}</div>
+            </div>
+          </div>
         </section>
 
         <section id="parcours" className="section">
@@ -125,7 +165,10 @@ export default function App() {
                 <li key={item.title} className="timeline-item reveal">
                   <span className="timeline-number">{String(index + 1).padStart(2, "0")}</span>
                   <div className="timeline-main"><span className="chip">{item.period}</span><h4>{item.title}</h4><small>{item.place}</small></div>
-                  <p>{item.text}</p>
+                  <div className="timeline-body">
+                    <p>{item.text}</p>
+                    <div className="tags">{item.tags.map((tag) => <span key={tag} className="chip">{tag}</span>)}</div>
+                  </div>
                 </li>
               ))}
             </ol>
@@ -142,7 +185,10 @@ export default function App() {
                 <li key={item.title} className="timeline-item reveal">
                   <span className="timeline-number">{String(index + 1).padStart(2, "0")}</span>
                   <div className="timeline-main"><span className="chip">{item.period}</span><h4>{item.title}</h4><small>{item.place}</small></div>
-                  <p>{item.text}</p>
+                  <div className="timeline-body">
+                    <p>{item.text}</p>
+                    <div className="tags">{item.tags.map((tag) => <span key={tag} className="chip">{tag}</span>)}</div>
+                  </div>
                 </li>
               ))}
             </ol>
@@ -151,21 +197,91 @@ export default function App() {
 
         <section id="projets" className="section">
           <div className="section-heading section-heading-inline reveal"><div><span className="section-index">{text.projectIndex}</span><h3 className="title">{text.projectTitle}</h3></div><span className="section-note">{text.projectNote}</span></div>
+          <div className="filters" role="group" aria-label={text.filterLabel}>
+            {filterIds.map((id, index) => (
+              <button key={id} type="button" className={filter === id ? "is-active" : ""} aria-pressed={filter === id} onClick={() => setFilter(id)}>{text.filters[index]}</button>
+            ))}
+          </div>
           <div className="grid">
-            {displayedProjects.map((p, index) => (
+            {visibleProjects.map((p, index) => (
               <article key={p.title} className={`card project-card project-card-${index + 1} reveal`}>
-                <span className="project-number">0{index + 1}</span>
-                <small>{p.context}</small>
-                <h4>{p.title}</h4>
-                <p>{p.text}</p>
-                <div className="tags">
-                  {p.tags.map((t) => (
-                    <span key={t} className="chip">{t}</span>
-                  ))}
+                {p.image && (
+                  <div className="project-media">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      onError={(event) => event.currentTarget.parentElement?.style.setProperty("display", "none")}
+                    />
+                  </div>
+                )}
+                <div className="project-content">
+                  <span className="project-number">{String(index + 1).padStart(2, "0")}</span>
+                  <small>{p.context}</small>
+                  <h4>{p.title}</h4>
+                  <p>{p.text}</p>
+                  <div className="tags">
+                    {p.tags.map((t) => (
+                      <span key={t} className="chip">{t}</span>
+                    ))}
+                  </div>
+                  {p.link && <a className="more" href={p.link}>{text.projectLink} <ExternalLink className="icon icon-small" aria-hidden="true" /></a>}
                 </div>
-                {p.link && <a className="more" href={p.link}>{text.projectLink} <ExternalLink className="icon icon-small" aria-hidden="true" /></a>}
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="engagements" className="section">
+          <div className="section-heading section-heading-inline reveal"><div><span className="section-index">{text.engagementIndex}</span><h3 className="title">{text.engagementTitle}</h3></div><span className="section-note">{text.engagementNote}</span></div>
+          <div className="engage-list">
+            {displayedEngagements.map((item) => (
+              <article key={item.title} className="card engage-card reveal">
+                {item.image && (
+                  <div className="engage-media">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      onError={(event) => event.currentTarget.parentElement?.style.setProperty("display", "none")}
+                    />
+                  </div>
+                )}
+                <div className="engage-body">
+                  <span className="chip"><Heart className="icon icon-small" aria-hidden="true" />{item.period}</span>
+                  <h4>{item.title}</h4>
+                  <small>{item.place}</small>
+                  <p>{item.text}</p>
+                  <div className="tags">{item.tags.map((tag) => <span key={tag} className="chip">{tag}</span>)}</div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="honors">
+            <div className="honor-col reveal">
+              <span className="career-eyebrow">{text.distinctionsLabel}</span>
+              <ul className="honor-list">
+                {displayedDistinctions.map((item) => (
+                  <li key={item.title} className="honor-row">
+                    <Award className="icon" aria-hidden="true" />
+                    <div><strong>{item.title}</strong><small>{item.detail}</small></div>
+                    <span className="chip">{item.year}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="honor-col reveal">
+              <span className="career-eyebrow">{text.certificationsLabel}</span>
+              <ul className="honor-list">
+                {displayedCertifications.map((item) => (
+                  <li key={item.title} className="honor-row">
+                    <Award className="icon" aria-hidden="true" />
+                    <div><strong>{item.title}</strong><small>{item.detail}</small></div>
+                    <span className="chip">{item.year}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -189,9 +305,10 @@ export default function App() {
             <p className="lead">{text.contactLead}</p>
             <div className="actions">
               <a className="btn primary" href={`mailto:${profile.email}`}><Mail className="icon" aria-hidden="true" />{text.email}</a>
-              <a className="btn" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
               <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+              <a className="btn" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
               <a className="btn" href={`tel:${profile.tel.replace(/\s/g, "")}`}><Phone className="icon" aria-hidden="true" />{text.phone}</a>
+              <button className="btn" type="button" onClick={() => setCvOpen(true)}><FileText className="icon" aria-hidden="true" />{text.cvPreviewLink}</button>
             </div>
           </div>
         </section>

@@ -1,4 +1,4 @@
-import { experiences, formations, projects, skills } from "./data";
+import { certifications, distinctions, engagements, experiences, formations, projects, skills } from "./data";
 
 export type Language = "fr" | "en";
 
@@ -9,12 +9,17 @@ type Copy = {
   themeLabelLight: string;
   themeLabelDark: string;
   navigationLabel: string;
-  nav: [string, string, string, string, string];
+  nav: [string, string, string, string, string, string];
   homeLabel: string;
+  docTitle: string;
   heroEyebrow: string;
   heroLead: string;
   heroPrimary: string;
   heroCv: string;
+  portraitAlt: string;
+  portraitLocation: string;
+  portraitMobility: string;
+  statLabels: [string, string, string, string];
   cvPreviewLink: string;
   cvPreviewLabel: string;
   cvPreviewTitle: string;
@@ -24,6 +29,7 @@ type Copy = {
   aboutIndex: string;
   aboutTitle: string;
   aboutDescription: string;
+  aboutFocus: [string, string, string];
   journeyIndex: string;
   journeyTitle: string;
   educationLabel: string;
@@ -36,6 +42,13 @@ type Copy = {
   projectTitle: string;
   projectNote: string;
   projectLink: string;
+  filterLabel: string;
+  filters: [string, string, string, string];
+  engagementIndex: string;
+  engagementTitle: string;
+  engagementNote: string;
+  distinctionsLabel: string;
+  certificationsLabel: string;
   skillsIndex: string;
   skillsTitle: string;
   skillsNote: string;
@@ -57,12 +70,17 @@ export const copy = {
     themeLabelLight: "Activer le thème clair",
     themeLabelDark: "Activer le thème sombre",
     navigationLabel: "Navigation principale",
-    nav: ["À propos", "Parcours", "Projets", "Compétences", "Contact"],
+    nav: ["À propos", "Parcours", "Projets", "Engagements", "Compétences", "Contact"],
     homeLabel: "Lorelle, accueil",
-    heroEyebrow: "Élève ingénieure",
-    heroLead: "Curieuse et polyvalente, je m'intéresse particulièrement au développement web, à l'intelligence artificielle et à la cybersécurité.",
+    docTitle: "Élève ingénieure IA et Réseaux",
+    heroEyebrow: "Recherche un stage en IA ou en Réseaux",
+    heroLead: "Élève ingénieure à Toulouse INP-ENSEEIHT, je conçois des systèmes d'intelligence artificielle et des interfaces web, de la vision par ordinateur aux agents à base de LLM, avec un intérêt marqué pour les réseaux.",
     heroPrimary: "Découvrir mes projets",
     heroCv: "Télécharger le CV",
+    portraitAlt: "Portrait de Lorelle",
+    portraitLocation: "Toulouse, France",
+    portraitMobility: "Mobilité nationale",
+    statLabels: ["années major de promotion", "stages en informatique et IA", "écoles d'ingénieurs", "projets présentés"],
     cvPreviewLink: "Voir mon CV",
     cvPreviewLabel: "Aperçu du CV de Lorelle",
     cvPreviewTitle: "Mon CV",
@@ -71,30 +89,38 @@ export const copy = {
     closePreview: "Fermer l’aperçu du CV",
     aboutIndex: "01 / À PROPOS",
     aboutTitle: "Curieuse de nature, ingénieure par choix.",
-    aboutDescription: "Étudiante ingénieure en double diplôme à Toulouse INP–ENSEEIHT, après un cursus en génie informatique à l'ENSPY de Yaoundé. Je m'intéresse aux systèmes informatiques, aux réseaux, à la connectivité et aux systèmes embarqués, ainsi qu'au développement web, à l'intelligence artificielle, à l'IoT et à la cybersécurité.",
+    aboutDescription: "Élève ingénieure en double diplôme à Toulouse INP–ENSEEIHT (Sciences du Numérique, parcours Réseaux), après un cycle ingénieur en intelligence artificielle à l'ENSPY de Yaoundé, où j'ai été major de promotion. Je construis des systèmes qui vont de la vision par ordinateur aux agents IA, et je m'intéresse aussi aux réseaux, à la connectivité, à l'IoT et à la cybersécurité. Je recherche un stage en intelligence artificielle ou en réseaux.",
+    aboutFocus: ["Intelligence artificielle", "Réseaux et systèmes", "Développement web"],
     journeyIndex: "02 / PARCOURS",
     journeyTitle: "Là où j’apprends et je construis.",
     educationLabel: "FORMATION",
     educationTitle: "Formation académique",
     educationCount: "étapes",
     experienceLabel: "EXPÉRIENCE PROFESSIONNELLE",
-    experienceTitle: "Stages et enseignement",
+    experienceTitle: "Stages et expériences",
     experienceCount: "expériences",
     projectIndex: "03 / SÉLECTION",
     projectTitle: "Projets choisis.",
     projectNote: "Du concret, du code, de l’impact.",
     projectLink: "Voir le projet",
-    skillsIndex: "04 / COMPÉTENCES",
+    filterLabel: "Filtrer les projets par domaine",
+    filters: ["Tous", "IA", "Web", "Réseaux"],
+    engagementIndex: "04 / ENGAGEMENTS",
+    engagementTitle: "Au-delà du code.",
+    engagementNote: "Solidarité, excellence, apprentissage continu.",
+    distinctionsLabel: "DISTINCTIONS",
+    certificationsLabel: "CERTIFICATIONS",
+    skillsIndex: "05 / COMPÉTENCES",
     skillsTitle: "Ma boîte à outils.",
     skillsNote: "L’essentiel, sans détour.",
-    contactIndex: "05 / ET MAINTENANT ?",
+    contactIndex: "06 / ET MAINTENANT ?",
     contactTitle: "On imagine la suite ensemble ?",
-    contactLead: "Pour un stage, un projet ou une question, écrivez-moi.",
+    contactLead: "Je recherche un stage en intelligence artificielle ou en réseaux. Pour un stage, un projet ou une question, écrivez-moi.",
     email: "Envoyer un email",
     phone: "Téléphone",
     copyright: "Tous droits réservés.",
     backToTop: "Retour en haut",
-    metaDescription: "Portfolio de Lorelle, élève ingénieure en informatique, intéressée par le développement web, l’intelligence artificielle et la cybersécurité.",
+    metaDescription: "Portfolio de Lorelle Ngoumi Mahatang, élève ingénieure à Toulouse INP-ENSEEIHT (IA et réseaux) : vision par ordinateur, agents IA, développement web et réseaux. Recherche un stage.",
   },
   en: {
     languageLabel: "Choose language",
@@ -103,12 +129,17 @@ export const copy = {
     themeLabelLight: "Switch to light theme",
     themeLabelDark: "Switch to dark theme",
     navigationLabel: "Main navigation",
-    nav: ["About", "Journey", "Projects", "Skills", "Contact"],
+    nav: ["About", "Journey", "Projects", "Community", "Skills", "Contact"],
     homeLabel: "Lorelle, home",
-    heroEyebrow: "Engineering student",
-    heroLead: "Curious and versatile, I am especially interested in web development, artificial intelligence and cybersecurity.",
+    docTitle: "Engineering student, AI and Networks",
+    heroEyebrow: "Seeking an internship in AI or Networks",
+    heroLead: "I am an engineering student at Toulouse INP-ENSEEIHT. I build artificial intelligence systems and web interfaces, from computer vision to LLM-based agents, with a strong interest in networks.",
     heroPrimary: "Explore my projects",
     heroCv: "Download my CV",
+    portraitAlt: "Portrait of Lorelle",
+    portraitLocation: "Toulouse, France",
+    portraitMobility: "Open to relocation in France",
+    statLabels: ["years top of the class", "internships in software and AI", "engineering schools", "projects featured"],
     cvPreviewLink: "View my CV",
     cvPreviewLabel: "Lorelle's CV preview",
     cvPreviewTitle: "My CV",
@@ -117,95 +148,166 @@ export const copy = {
     closePreview: "Close CV preview",
     aboutIndex: "01 / ABOUT",
     aboutTitle: "Curious by nature, engineer by choice.",
-    aboutDescription: "I am pursuing a double engineering degree at Toulouse INP–ENSEEIHT, after studying Computer Engineering at ENSPY in Yaoundé. I am interested in computer systems, networks, connectivity and embedded systems, as well as web development, artificial intelligence, IoT and cybersecurity.",
+    aboutDescription: "I am pursuing a double engineering degree at Toulouse INP–ENSEEIHT (Digital Sciences, Networks track), after an engineering programme in artificial intelligence at ENSPY in Yaoundé, where I graduated top of my class. I build systems ranging from computer vision to AI agents, and I am also interested in networks, connectivity, IoT and cybersecurity. I am looking for an internship in artificial intelligence or networks.",
+    aboutFocus: ["Artificial intelligence", "Networks and systems", "Web development"],
     journeyIndex: "02 / JOURNEY",
     journeyTitle: "Where I learn and build.",
     educationLabel: "EDUCATION",
     educationTitle: "Academic background",
     educationCount: "programmes",
     experienceLabel: "PROFESSIONAL EXPERIENCE",
-    experienceTitle: "Internships and teaching",
+    experienceTitle: "Internships and experience",
     experienceCount: "roles",
     projectIndex: "03 / SELECTED WORK",
     projectTitle: "Selected projects.",
     projectNote: "Practical work, thoughtful engineering.",
     projectLink: "View project",
-    skillsIndex: "04 / SKILLS",
+    filterLabel: "Filter projects by field",
+    filters: ["All", "AI", "Web", "Networks"],
+    engagementIndex: "04 / COMMUNITY",
+    engagementTitle: "Beyond code.",
+    engagementNote: "Solidarity, excellence, continuous learning.",
+    distinctionsLabel: "AWARDS",
+    certificationsLabel: "CERTIFICATIONS",
+    skillsIndex: "05 / SKILLS",
     skillsTitle: "Tools of the trade.",
     skillsNote: "Focused skills, built through practice.",
-    contactIndex: "05 / WHAT’S NEXT?",
+    contactIndex: "06 / WHAT’S NEXT?",
     contactTitle: "Let’s build what’s next, together.",
-    contactLead: "For an internship, a project, or a question, get in touch.",
+    contactLead: "I am looking for an internship in artificial intelligence or networks. For an internship, a project, or a question, get in touch.",
     email: "Send an email",
     phone: "Phone",
     copyright: "All rights reserved.",
     backToTop: "Back to top",
-    metaDescription: "Lorelle's portfolio. Engineering student in computer science with an interest in web development, artificial intelligence and cybersecurity.",
+    metaDescription: "Portfolio of Lorelle Ngoumi Mahatang, engineering student at Toulouse INP-ENSEEIHT (AI and networks): computer vision, AI agents, web development and networking. Seeking an internship.",
   },
 } satisfies Record<Language, Copy>;
 
 export const englishFormations = [
   {
     ...formations[0],
-    title: "Computer Engineering, ENSPY",
-    place: "Yaoundé, Cameroon",
-    text: "Engineering degree in Computer Science and Artificial Intelligence.",
+    title: "Double Degree, Toulouse INP–ENSEEIHT",
+    place: "Toulouse, France",
+    text: "Engineering programme in Digital Sciences, Networks track, at Toulouse INP-ENSEEIHT.",
+    tags: ["Networks", "Digital sciences"],
   },
   {
     ...formations[1],
-    title: "Double Degree, Toulouse INP–ENSEEIHT",
-    place: "Toulouse, France",
-    text: "Engineering studies in Digital Sciences, specialising in Networks.",
+    title: "Computer Engineering, ENSPY",
+    place: "Yaoundé, Cameroon",
+    text: "Engineering programme in Computer Science, specialising in Artificial Intelligence, admission by competitive exam. Top of the class in the first, second and third years.",
+    tags: ["AI", "Computer vision", "Deep learning"],
   },
 ];
 
 export const englishExperiences = [
   {
     ...experiences[0],
-    period: "Internship",
-    title: "Software Development Intern, MINEPAT (DGEPIP)",
+    period: "March – August 2026",
+    title: "AI Engineering Intern, Valione Services",
     place: "Yaoundé, Cameroon",
-    text: "Developed a Flask application for economic data analysis and forecasting.",
+    text: "Contributed to the AI agent architecture and the interface of Zelynto, a Microsoft 365 management and audit application: real-time chat, conversation history search and audit dashboards.",
+    tags: ["AI agents", "React", "TypeScript", "SSE"],
   },
   {
     ...experiences[1],
-    period: "Internship",
-    title: "Software Development Intern, Zelynto",
+    period: "February – August 2025",
+    title: "Software Development Intern, MINEPAT (DGEPIP)",
     place: "Yaoundé, Cameroon",
-    text: "Developed a web application for Microsoft 365 management and auditing.",
+    text: "Developed a Flask application to collect and analyse economic information: web scraping, automatic topic classification and generative-AI summaries.",
+    tags: ["Python", "Flask", "Web scraping", "Gemini"],
   },
   {
     ...experiences[2],
-    period: "Teaching",
+    title: "Customer Advisor and Sales",
+    place: "Retail, Cameroon",
+    text: "Advised customers and sold products, online and in store.",
+    tags: ["Customer relations", "Sales"],
+  },
+  {
+    ...experiences[3],
+    period: "June – August 2023",
     title: "Teacher, Intelligentsia Corporation",
     place: "Yaoundé, Cameroon",
-    text: "Prepared students for competitive engineering-school entrance exams in Cameroon.",
+    text: "Prepared students for competitive engineering-school entrance exams in Cameroon (ENSPY, ENSPD, ENSTP...) in mathematics, and taught computer science to final-year high-school students.",
+    tags: ["Mathematics", "Teaching"],
   },
 ];
 
 export const englishProjects = [
   {
     ...projects[0],
-    title: "Valione Services, March–August 2026",
-    context: "Zelynto",
-    text: "Microsoft 365 management and auditing application. I design interface components and the audit dashboard.",
+    context: "Internship, Valione Services",
+    text: "Microsoft 365 management and audit application with AI agents. Real-time conversational interface with history search, and an audit dashboard.",
   },
   {
     ...projects[1],
     context: "Academic project, ENSPY",
-    text: "Computer-vision disease detection for cocoa plants, with an API and web interface for image-based diagnosis.",
+    text: "Computer-vision disease detection for cocoa plants, with an API and web interface to upload an image and read the diagnosis.",
   },
   {
     ...projects[2],
+    title: "Collective Vision Assistant",
+    context: "Academic project, ENSPY",
+    text: "Detection of pedestrian crossings and traffic lights to assist visually impaired people, using a YOLOv8n model trained by transfer learning (mAP50 of about 0.71).",
+    tags: ["YOLOv8", "Computer vision", "Roboflow"],
+  },
+  {
+    ...projects[3],
+    title: "Visual Search Engine",
+    context: "Academic project, ENSPY",
+    text: "Image search by similarity: feature extraction with ResNet50, FAISS indexing and PCA visualisation.",
+    tags: ["ResNet50", "FAISS", "PCA"],
+  },
+  {
+    ...projects[4],
+    title: "Recommendation System",
+    context: "Academic project, ENSPY",
+    text: "Movie recommendation on MovieLens with LightGCN (BPR loss), evaluated with Recall@K and NDCG@K, with a Flask inference interface.",
+  },
+  {
+    ...projects[5],
     title: "Economic Forecasting in Cameroon",
     context: "Internship, MINEPAT",
-    text: "A tool for collecting and analysing economic information for DGEPIP.",
+    text: "A tool for collecting and analysing economic information for DGEPIP, with automatic generative-AI summaries.",
+  },
+  {
+    ...projects[6],
+    title: "University Network",
+    context: "Case study, ENSEEIHT",
+    text: "Design of a local network linking two schools, with shared VLANs.",
+    tags: ["VLAN", "Local networks"],
   },
 ];
 
+export const englishEngagements = [
+  {
+    ...engagements[0],
+    period: "Volunteering",
+    title: "Volunteer, food bank sorting centre",
+    place: "France",
+    text: "Helped sort collected food, as part of a team, so it could be redistributed to people in need.",
+    tags: ["Solidarity", "Teamwork"],
+  },
+];
+
+export const englishDistinctions = [
+  { ...distinctions[0], title: "Top of the class", year: "1st, 2nd and 3rd years" },
+  { ...distinctions[1], title: "Academic Excellence Award of the President of the Republic", detail: "Cameroon", year: "2024 and 2025" },
+];
+
+export const englishCertifications = [
+  { ...certifications[0], title: "Understanding Artificial Intelligence" },
+  { ...certifications[1], title: "Intermediate Python" },
+  certifications[2],
+  certifications[3],
+];
+
 export const englishSkills = [
-  { ...skills[0], items: ["React", "TypeScript", "JavaScript", "CSS", "Responsive design"] },
-  { ...skills[1], group: "Backend & data" },
-  { ...skills[2], group: "Artificial intelligence", items: ["YOLOv8", "Computer vision", "PyTorch", "TensorFlow"] },
-  { ...skills[3], group: "Tools" },
+  { ...skills[0], group: "Artificial intelligence", items: ["Deep learning", "Computer vision", "Recommendation systems", "LLMs and AI agents", "PyTorch", "YOLOv8", "FAISS", "LangChain"] },
+  skills[1],
+  { ...skills[2], group: "Backend & data" },
+  { ...skills[3], group: "Networks & systems" },
+  { ...skills[4], group: "Tools" },
+  { ...skills[5], group: "Languages", items: ["French (native)", "English (B1)"] },
 ];
