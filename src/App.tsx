@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { profile, formations, experiences, projects, skills, engagements, distinctions, certifications } from "./data";
-import { ArrowDownToLine, ArrowUp, Award, ExternalLink, FileText, Heart, Mail, MapPin, Moon, MoveUpRight, Phone, Sun, X } from "lucide-react";
+import { ArrowDownToLine, Award, ExternalLink, FileText, Heart, Mail, MapPin, Moon, MoveUpRight, Sun, X } from "lucide-react";
 import {
   copy,
   englishCertifications,
@@ -121,7 +121,6 @@ export default function App() {
             <div className="actions">
               <a className="btn primary" href="#projets">{text.heroPrimary} <MoveUpRight className="icon" aria-hidden="true" /></a>
               <button className="btn secondary" type="button" onClick={() => setCvOpen(true)}><FileText className="icon" aria-hidden="true" /> {text.cvPreviewLink}</button>
-              <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
           </div>
           <figure className="portrait reveal">
@@ -307,8 +306,6 @@ export default function App() {
               <a className="btn primary" href={`mailto:${profile.email}`}><Mail className="icon" aria-hidden="true" />{text.email}</a>
               <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
               <a className="btn" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-              <a className="btn" href={`tel:${profile.tel.replace(/\s/g, "")}`}><Phone className="icon" aria-hidden="true" />{text.phone}</a>
-              <button className="btn" type="button" onClick={() => setCvOpen(true)}><FileText className="icon" aria-hidden="true" />{text.cvPreviewLink}</button>
             </div>
           </div>
         </section>
@@ -339,7 +336,7 @@ export default function App() {
         </a>
       </dialog>
 
-      <footer className="footer"><a href="#top" className="footer-brand">{profile.name}<span className="hero-period">.</span></a><span>© {new Date().getFullYear()} — {text.copyright}</span><a href="#top" className="back-top">{text.backToTop} <ArrowUp className="icon icon-small" aria-hidden="true" /></a></footer>
+      <footer className="footer"><span>© {new Date().getFullYear()} — {text.copyright}</span></footer>
     </>
   );
 }
