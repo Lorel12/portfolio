@@ -2,7 +2,7 @@ const img = (file: string) => `${import.meta.env.BASE_URL}images/${file}`;
 
 export const profile = {
   name: "Lorelle",
-  surname: "Ngoumi Mahatang",
+  surname: "NGOUMI MAHATANG",
   email: "lorelngoumi@gmail.com",
   github: "https://github.com/Lorel12",
   linkedin: "https://linkedin.com/in/lorelle-ngoumi",
@@ -71,15 +71,6 @@ export const projects = [
     link: "",
   },
   {
-    title: "CacaoDetect",
-    context: "Projet académique, ENSPY",
-    text: "Détection de maladies sur des plants de cacao par vision par ordinateur, avec une API et une interface web pour envoyer une image et lire le diagnostic.",
-    tags: ["YOLOv8", "FastAPI", "React", "PostgreSQL"],
-    categories: ["ia", "web"],
-    image: img("cacaodetect.png"),
-    link: "",
-  },
-  {
     title: "Assistant de vision collective",
     context: "Projet académique, ENSPY",
     text: "Détection de passages piétons et de feux tricolores pour aider les personnes malvoyantes, avec un modèle YOLOv8n entraîné par transfert d'apprentissage (mAP50 d'environ 0,71).",
@@ -112,8 +103,8 @@ export const projects = [
     text: "Outil de collecte et d'analyse d'informations économiques pour la DGEPIP, avec synthèses automatiques par IA générative.",
     tags: ["Flask", "Python", "Gemini"],
     categories: ["ia", "web"],
-    image: img("minepat.png"),
-    link: "",
+    image: img("previsionsEco.png"),
+    link: "https://github.com/Lorel12/opesc_projet",
   },
   {
     title: "Réseau universitaire",
