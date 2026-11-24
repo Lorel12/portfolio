@@ -29,7 +29,7 @@ type Copy = {
   aboutIndex: string;
   aboutTitle: string;
   aboutDescription: string;
-  aboutFocus: [string, string, string];
+  aboutFocus: [string, string, string, string];
   journeyIndex: string;
   journeyTitle: string;
   educationLabel: string;
@@ -74,7 +74,7 @@ export const copy = {
     homeLabel: "Lorelle, accueil",
     docTitle: "Élève ingénieure IA et Réseaux",
     heroEyebrow: "Recherche un stage en Réseaux",
-    heroLead: "Élève ingénieure à Toulouse INP-ENSEEIHT, je conçois des systèmes d'intelligence artificielle et des interfaces web, de la vision par ordinateur aux agents à base de LLM, avec un intérêt marqué pour les réseaux.",
+    heroLead: "Élève ingénieure en réseaux à Toulouse INP-ENSEEIHT, formée en intelligence artificielle. Je conçois des infrastructures réseau sécurisées et je les relie à l'IA et au web : vision par ordinateur, agents à base de LLM, interfaces.",
     heroPrimary: "Découvrir mes projets",
     heroCv: "Télécharger le CV",
     portraitAlt: "Portrait de Lorelle",
@@ -89,8 +89,8 @@ export const copy = {
     closePreview: "Fermer l’aperçu du CV",
     aboutIndex: "01 / À PROPOS",
     aboutTitle: "Curieuse de nature, ingénieure par choix.",
-    aboutDescription: "Élève ingénieure en double diplôme à Toulouse INP–ENSEEIHT (Sciences du Numérique, parcours Réseaux), après un cycle ingénieur en intelligence artificielle à l'ENSPY de Yaoundé. Je construis des systèmes qui vont de la vision par ordinateur aux agents IA, et je m'intéresse aussi aux réseaux, à la connectivité, à l'IoT et à la cybersécurité. Je recherche un stage en réseaux.",
-    aboutFocus: ["Intelligence Artificielle", "Réseaux et Systèmes", "Développement Web"],
+    aboutDescription: "Élève ingénieure en double diplôme à Toulouse INP–ENSEEIHT (Sciences du Numérique, parcours Réseaux), après un cycle ingénieur en intelligence artificielle à l'ENSPY de Yaoundé. Je construis des systèmes qui vont de la vision par ordinateur aux agents IA, et je m'intéresse aux réseaux, à la connectivité, aux infrastructures Cloud, aux systèmes embarqués, à l'IoT et à la cybersécurité. Je recherche un stage en réseaux.",
+    aboutFocus: ["Sécurité Informatique", "Intelligence Artificielle", "Réseaux et Systèmes", "Développement Web"],
     journeyIndex: "02 / PARCOURS",
     journeyTitle: "Là où j’apprends et je construis.",
     educationLabel: "FORMATION",
@@ -149,7 +149,7 @@ export const copy = {
     aboutIndex: "01 / ABOUT",
     aboutTitle: "Curious by nature, engineer by choice.",
     aboutDescription: "I am pursuing a double engineering degree at Toulouse INP–ENSEEIHT (Digital Sciences, Networks track), after an engineering programme in artificial intelligence at ENSPY in Yaoundé, where I graduated top of my class. I build systems ranging from computer vision to AI agents, and I am also interested in networks, connectivity, IoT and cybersecurity. I am looking for an internship in artificial intelligence or networks.",
-    aboutFocus: ["Artificial intelligence", "Networks and systems", "Web development"],
+    aboutFocus: ["Cybersecurity", "Artificial intelligence", "Networks and systems", "Web development"],
     journeyIndex: "02 / JOURNEY",
     journeyTitle: "Where I learn and build.",
     educationLabel: "EDUCATION",
