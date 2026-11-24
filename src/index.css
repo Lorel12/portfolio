@@ -263,7 +263,7 @@ html.motion-ready .reveal:not(.is-visible) { opacity: 0; transform: translateY(1
 .honor-row .icon { color: var(--accent); }
 .honor-row strong { display: block; font: 600 0.95rem / 1.35 var(--font-display); }
 .honor-row small { color: var(--muted); font-size: 0.78rem; font-weight: 500; }
-
+.honor-link { font-size: 0.85em; color: #2563eb; text-decoration: underlined}
 /* Compétences */
 .skills-list { border-top: 1px solid var(--line); }
 .skill-row { display: grid; grid-template-columns: 3rem minmax(10rem, 0.42fr) minmax(0, 1fr); align-items: start; gap: 1rem; padding: 1.3rem 0.25rem; border-bottom: 1px solid var(--line); }
