@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { profile, formations, experiences, projects, skills, engagements, distinctions, certifications } from "./data";
-import { ArrowDownToLine, Award, ExternalLink, FileText, Heart, Mail, MapPin, Moon, MoveUpRight, Sun, X } from "lucide-react";
+import { ArrowDownToLine, Award, ExternalLink, FileText, Heart, Mail, MapPin, Moon, Sun, X } from "lucide-react";
 import {
   copy,
   englishCertifications,
@@ -119,7 +119,7 @@ export default function App() {
             <h1>{profile.name}<span className="surname">{profile.surname}</span></h1>
             <p className="lead">{text.heroLead}</p>
             <div className="actions">
-              <a className="btn primary" href="#projets">{text.heroPrimary} <MoveUpRight className="icon" aria-hidden="true" /></a>
+              <a className="btn primary" href="#projets">{text.heroPrimary}</a>
               <button className="btn secondary" type="button" onClick={() => setCvOpen(true)}><FileText className="icon" aria-hidden="true" /> {text.cvPreviewLink}</button>
             </div>
           </div>
@@ -275,7 +275,20 @@ export default function App() {
                 {displayedCertifications.map((item) => (
                   <li key={item.title} className="honor-row">
                     <Award className="icon" aria-hidden="true" />
-                    <div><strong>{item.title}</strong><small>{item.detail}</small></div>
+                    <div>
+                      <strong>{item.title}</strong>
+                      <small>
+                        {item.detail}
+                        {item.link && (
+                          <>
+                            {" · "}
+                            <a href={item.link} target="_blank" rel="noreferrer" className="honor-link">
+                              Voir le certificat.
+                            </a>
+                          </>
+                        )}
+                      </small>
+                    </div>
                     <span className="chip">{item.year}</span>
                   </li>
                 ))}
