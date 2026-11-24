@@ -283,7 +283,7 @@ export default function App() {
                           <>
                             {" · "}
                             <a href={item.link} target="_blank" rel="noreferrer" className="honor-link">
-                              Voir le certificat.
+                              {text.certificateLink}
                             </a>
                           </>
                         )}

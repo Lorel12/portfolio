@@ -42,6 +42,7 @@ type Copy = {
   projectTitle: string;
   projectNote: string;
   projectLink: string;
+  certificateLink: string;
   filterLabel: string;
   filters: [string, string, string, string];
   engagementIndex: string;
@@ -103,6 +104,7 @@ export const copy = {
     projectTitle: "Projets choisis.",
     projectNote: "Du concret, du code, de l’impact.",
     projectLink: "Voir le projet",
+    certificateLink: "Voir le certificat.",
     filterLabel: "Filtrer les projets par domaine",
     filters: ["Tous", "IA", "Web", "Réseaux"],
     engagementIndex: "04 / ENGAGEMENTS",
@@ -132,8 +134,8 @@ export const copy = {
     nav: ["About", "Journey", "Projects", "Community", "Skills", "Contact"],
     homeLabel: "Lorelle, home",
     docTitle: "Engineering student, AI and Networks",
-    heroEyebrow: "Seeking an internship in AI or Networks",
-    heroLead: "I am an engineering student at Toulouse INP-ENSEEIHT. I build artificial intelligence systems and web interfaces, from computer vision to LLM-based agents, with a strong interest in networks.",
+    heroEyebrow: "Seeking an internship in Networks",
+    heroLead: "I am a Networks engineering student at Toulouse INP-ENSEEIHT, with a background in artificial intelligence. I design secure network infrastructures and connect them with AI and the web, from computer vision to LLM-based agents and interfaces.",
     heroPrimary: "Explore my projects",
     heroCv: "Download my CV",
     portraitAlt: "Portrait of Lorelle",
@@ -148,7 +150,7 @@ export const copy = {
     closePreview: "Close CV preview",
     aboutIndex: "01 / ABOUT",
     aboutTitle: "Curious by nature, engineer by choice.",
-    aboutDescription: "I am pursuing a double engineering degree at Toulouse INP–ENSEEIHT (Digital Sciences, Networks track), after an engineering programme in artificial intelligence at ENSPY in Yaoundé, where I graduated top of my class. I build systems ranging from computer vision to AI agents, and I am also interested in networks, connectivity, IoT and cybersecurity. I am looking for an internship in artificial intelligence or networks.",
+    aboutDescription: "I am pursuing a double engineering degree at Toulouse INP–ENSEEIHT (Digital Sciences, Networks track), after completing an engineering programme in artificial intelligence at ENSPY in Yaoundé. I build systems ranging from computer vision to AI agents, and I am interested in networks, connectivity, cloud infrastructure, embedded systems, IoT and cybersecurity. I am looking for an internship in networks.",
     aboutFocus: ["Cybersecurity", "Artificial intelligence", "Networks and systems", "Web development"],
     journeyIndex: "02 / JOURNEY",
     journeyTitle: "Where I learn and build.",
@@ -162,6 +164,7 @@ export const copy = {
     projectTitle: "Selected projects.",
     projectNote: "Practical work, thoughtful engineering.",
     projectLink: "View project",
+    certificateLink: "View certificate.",
     filterLabel: "Filter projects by field",
     filters: ["All", "AI", "Web", "Networks"],
     engagementIndex: "04 / COMMUNITY",
@@ -198,6 +201,13 @@ export const englishFormations = [
     text: "Engineering programme in Computer Science, specialising in Artificial Intelligence, admission by competitive exam. Top of the class in the first, second and third years.",
     tags: ["AI", "Computer vision", "Deep learning"],
   },
+  {
+    ...formations[2],
+    title: "Scientific Baccalaureate, Lycée Général Leclerc",
+    place: "Yaoundé, Cameroon",
+    text: "Scientific Baccalaureate awarded by Lycée Général Leclerc in Yaoundé.",
+    tags: ["Mathematics", "Physics", "Chemistry"],
+  },
 ];
 
 export const englishExperiences = [
@@ -219,18 +229,18 @@ export const englishExperiences = [
   },
   {
     ...experiences[2],
-    title: "Customer Advisor and Sales",
+    title: "Customer Service and Sales Associate, WISECOM Cameroon",
     place: "Retail, Cameroon",
     text: "Advised customers and sold products, online and in store.",
     tags: ["Customer relations", "Sales"],
   },
   {
     ...experiences[3],
-    period: "June – August 2023",
+    period: "2023 – 2025",
     title: "Teacher, Intelligentsia Corporation",
     place: "Yaoundé, Cameroon",
-    text: "Prepared students for competitive engineering-school entrance exams in Cameroon (ENSPY, ENSPD, ENSTP...) in mathematics, and taught computer science to final-year high-school students.",
-    tags: ["Mathematics", "Teaching"],
+    text: "Prepared students for entrance exams to Cameroon’s leading engineering schools (ENSPY, ENSPD, ENSTP, IAI, SUP'PTIC...).",
+    tags: ["Mathematics", "Computer science", "General knowledge"],
   },
 ];
 
@@ -242,37 +252,32 @@ export const englishProjects = [
   },
   {
     ...projects[1],
-    context: "Academic project, ENSPY",
-    text: "Computer-vision disease detection for cocoa plants, with an API and web interface to upload an image and read the diagnosis.",
-  },
-  {
-    ...projects[2],
     title: "Collective Vision Assistant",
     context: "Academic project, ENSPY",
     text: "Detection of pedestrian crossings and traffic lights to assist visually impaired people, using a YOLOv8n model trained by transfer learning (mAP50 of about 0.71).",
     tags: ["YOLOv8", "Computer vision", "Roboflow"],
   },
   {
-    ...projects[3],
+    ...projects[2],
     title: "Visual Search Engine",
     context: "Academic project, ENSPY",
     text: "Image search by similarity: feature extraction with ResNet50, FAISS indexing and PCA visualisation.",
     tags: ["ResNet50", "FAISS", "PCA"],
   },
   {
-    ...projects[4],
+    ...projects[3],
     title: "Recommendation System",
     context: "Academic project, ENSPY",
     text: "Movie recommendation on MovieLens with LightGCN (BPR loss), evaluated with Recall@K and NDCG@K, with a Flask inference interface.",
   },
   {
-    ...projects[5],
+    ...projects[4],
     title: "Economic Forecasting in Cameroon",
     context: "Internship, MINEPAT",
     text: "A tool for collecting and analysing economic information for DGEPIP, with automatic generative-AI summaries.",
   },
   {
-    ...projects[6],
+    ...projects[5],
     title: "University Network",
     context: "Case study, ENSEEIHT",
     text: "Design of a local network linking two schools, with shared VLANs.",
@@ -299,13 +304,15 @@ export const englishDistinctions = [
 export const englishCertifications = [
   { ...certifications[0], title: "Understanding Artificial Intelligence" },
   { ...certifications[1], title: "Intermediate Python" },
-  certifications[2],
-  certifications[3],
+  { ...certifications[2], title: "Generative AI" },
+  { ...certifications[3], title: "Responsive Web Design" },
+  { ...certifications[4], title: "AI Ethics" },
+  { ...certifications[5], title: "Introduction to AI" },
 ];
 
 export const englishSkills = [
   { ...skills[0], group: "Artificial intelligence", items: ["Deep learning", "Computer vision", "Recommendation systems", "LLMs and AI agents", "PyTorch", "YOLOv8", "FAISS", "LangChain"] },
-  skills[1],
+  { ...skills[1], items: ["React", "TypeScript", "JavaScript", "CSS", "Responsive design"] },
   { ...skills[2], group: "Backend & data" },
   { ...skills[3], group: "Networks & systems" },
   { ...skills[4], group: "Tools" },
