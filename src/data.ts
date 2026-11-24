@@ -26,6 +26,13 @@ export const formations = [
     text: "Cycle ingénieur en génie informatique, spécialité intelligence artificielle, admission sur concours. Major de promotion en première, deuxième et troisième année.",
     tags: ["IA", "Vision par ordinateur", "Apprentissage profond"],
   },
+  {
+    period: "2021-2022",
+    title: "Baccalauréat scientifique, Lycée Genéral Leclerc",
+    place: "Yaoundé, Cameroun",
+    text: "Baccalauréat scientifique, obtenu au Lycée Général Leclerc à Yaoundé.",
+    tags: ["Mathématiques", "Physique", "Chimie"],
+  }
 ];
 
 // Du plus récent au plus ancien
@@ -42,21 +49,21 @@ export const experiences = [
     title: "Stagiaire en informatique, MINEPAT (DGEPIP)",
     place: "Yaoundé, Cameroun",
     text: "Développement d'une application Flask de collecte et d'analyse d'informations économiques : web scraping, classification thématique automatique et synthèses par IA générative.",
-    tags: ["Python", "Flask", "Web scraping", "Gemini"],
+    tags: ["Python", "Flask", "Web Scraping", "API Gemini"],
   },
   {
     period: "2023 - 2026",
-    title: "Chargée de clientèle et vente",
-    place: "Commerce de détail, Cameroun",
+    title: "Chargée de clientèle et vente, WISECOM Cameroun",
+    place: "Commerce en gros et en détail, Cameroun",
     text: "Conseil aux clients et vente, en ligne et en boutique.",
     tags: ["Relation client", "Vente"],
   },
   {
-    period: "Juin - août 2023",
+    period: "2023 - 2025",
     title: "Enseignante, Intelligentsia Corporation",
     place: "Yaoundé, Cameroun",
-    text: "Préparation d'élèves aux concours d'entrée dans les grandes écoles d'ingénieurs du Cameroun (ENSPY, ENSPD, ENSTP...) en mathématiques, et enseignement de l'informatique en Terminale.",
-    tags: ["Mathématiques", "Pédagogie"],
+    text: "Préparation d'élèves aux concours d'entrée dans les grandes écoles d'ingénieurs du Cameroun (ENSPY, ENSPD, ENSTP, IAI, SUP'PTIC...).",
+    tags: ["Mathématiques", "Informatique", "Culture générale"],
   },
 ];
 
@@ -135,10 +142,12 @@ export const distinctions = [
 ];
 
 export const certifications = [
-  { title: "Comprendre l'intelligence artificielle", detail: "DataCamp", year: "2025" },
-  { title: "Python intermédiaire", detail: "DataCamp", year: "2025" },
-  { title: "Generative AI", detail: "Coursera", year: "2024" },
-  { title: "Responsive Web Design", detail: "freeCodeCamp", year: "2023" },
+  { title: "Comprendre l'intelligence artificielle", detail: "DataCamp", year: "2025", link: "" },
+  { title: "Python intermédiaire", detail: "DataCamp", year: "2025", link: "https://www.datacamp.com/statement-of-accomplishment/course/bb7d16309d17f57bd0a622f55d6cdac347b73a0b?raw=1" },
+  { title: "Generative AI", detail: "Coursera", year: "2024", link: "https://www.coursera.org/account/accomplishments/certificate/A7RDDJND9F53" },
+  { title: "Responsive Web Design", detail: "freeCodeCamp", year: "2023", link: "" },
+  { title: "Éthique de l'IA", detail: "DataCamp", year: "2026", link: "https://www.datacamp.com/statement-of-accomplishment/course/e103a21dc18161a09e300e8e214523179601b57e?raw=1" },
+  { title: "Introduction à l'IA", detail: "DataCamp", year: "2026", link: "https://www.datacamp.com/statement-of-accomplishment/course/f5e79378d6b8a1d5f0b1537a3f390fd6f80fd24a?raw=1" },
 ];
 
 export const skills = [
