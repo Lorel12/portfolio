@@ -157,6 +157,7 @@ export const elearningModules = [
     provider: "hucency - Human centered cybersecurity",
     duration: "30 min",
     file: "attestation.pdf",
+    preview: "attestation-preview.jpg",
   },
 ];
 

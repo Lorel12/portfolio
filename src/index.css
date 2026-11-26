@@ -268,13 +268,14 @@ html.motion-ready .reveal:not(.is-visible) { opacity: 0; transform: translateY(1
 .elearning-section .career-eyebrow { text-transform: uppercase; }
 .elearning-list { display: grid; gap: 0.75rem; }
 .elearning-card { display: flex; align-items: center; gap: 1rem; padding: 0.85rem; border: 1px solid var(--line); border-radius: 0.85rem; background: var(--surface); }
-.elearning-preview { position: relative; flex: 0 0 5.5rem; aspect-ratio: 4 / 3; overflow: hidden; border: 1px solid var(--line); border-radius: 0.45rem; background: var(--surface-alt); }
-.elearning-preview iframe { display: block; width: 100%; height: 100%; border: 0; pointer-events: none; }
+.elearning-preview { position: relative; flex: 0 0 10rem; aspect-ratio: 1.414 / 1; overflow: hidden; border: 1px solid var(--line); border-radius: 0.45rem; background: var(--surface-alt); }
+.elearning-preview img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .elearning-preview-action { position: absolute; inset: 0; width: 100%; border: 0; background: transparent; cursor: zoom-in; }
 .elearning-preview-action:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
 .elearning-card-copy h5 { font: 600 0.95rem / 1.35 var(--font-display); }
 .elearning-card-copy p { margin-top: 0.25rem; color: var(--muted); font-size: 0.78rem; }
 .attestation-dialog { width: min(52rem, calc(100vw - 2rem)); }
+.attestation-image { display: block; width: 100%; max-height: min(68vh, 48rem); object-fit: contain; }
 /* Compétences */
 .skills-list { border-top: 1px solid var(--line); }
 .skill-row { display: grid; grid-template-columns: 3rem minmax(10rem, 0.42fr) minmax(0, 1fr); align-items: start; gap: 1rem; padding: 1.3rem 0.25rem; border-bottom: 1px solid var(--line); }
@@ -343,6 +344,10 @@ html.motion-ready .reveal:not(.is-visible) { opacity: 0; transform: translateY(1
   .btn { min-height: 2.8rem; padding: 0 1.1rem; font-size: 0.8rem; }
   .cv-dialog { padding: 0.9rem; }
   .cv-document { height: 68vh; }
+  .elearning-card { flex-direction: column; align-items: stretch; }
+  .elearning-preview { flex: 0 0 auto; width: 100%; aspect-ratio: 1.414 / 1; }
+  .attestation-dialog { width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); padding: 0.75rem; }
+  .attestation-image { max-height: min(62dvh, calc(100dvh - 8rem)); }
   .grid { grid-template-columns: 1fr; }
   .skill-row { grid-template-columns: 1.6rem minmax(0, 1fr); gap: 0.5rem 0.6rem; padding: 1.1rem 0.1rem; }
   .skill-items { grid-column: 2; }

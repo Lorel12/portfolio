@@ -310,17 +310,16 @@ export default function App() {
                 <h4 className="career-eyebrow">{text.elearningTitle}</h4>
                 <div className="elearning-list">
                   {displayedElearningModules.map((module) => {
-                    const attestationUrl = `${import.meta.env.BASE_URL}attestations/${module.file}`;
+                    const previewUrl = `${import.meta.env.BASE_URL}attestations/${module.preview}`;
 
                     return (
                       <article key={module.id} className="elearning-card">
                         <div className="elearning-preview">
-                          <iframe
-                            src={`${attestationUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+                          <img
+                            src={previewUrl}
+                            alt=""
                             title={`${text.elearningPreviewLabel}: ${module.title}`}
                             loading="lazy"
-                            tabIndex={-1}
-                            aria-hidden="true"
                           />
                           <button
                             className="elearning-preview-action"
@@ -410,10 +409,10 @@ export default function App() {
           </button>
         </div>
         {selectedElearningModule && (
-          <iframe
-            className="cv-document"
-            src={`${import.meta.env.BASE_URL}attestations/${selectedElearningModule.file}`}
-            title={`${text.elearningPreviewLabel}: ${selectedElearningModule.title}`}
+          <img
+            className="attestation-image"
+            src={`${import.meta.env.BASE_URL}attestations/${selectedElearningModule.preview}`}
+            alt={`${text.elearningPreviewLabel}: ${selectedElearningModule.title}`}
           />
         )}
       </dialog>
