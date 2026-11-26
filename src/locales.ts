@@ -123,7 +123,7 @@ export const copy = {
     skillsNote: "L’essentiel, sans détour.",
     contactIndex: "06 / ET MAINTENANT ?",
     contactTitle: "On imagine la suite ensemble ?",
-    contactLead: "Je recherche un stage en intelligence artificielle ou en réseaux. Pour un stage, un projet ou une question, écrivez-moi.",
+    contactLead: "Je recherche un stage en Réseaux, cybersécurité. Pour un stage, un projet ou une question, écrivez-moi.",
     email: "Envoyer un email",
     phone: "Téléphone",
     copyright: "Tous droits réservés.",
