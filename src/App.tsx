@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { profile, formations, experiences, projects, skills, engagements, distinctions, certifications } from "./data";
+import { profile, formations, experiences, projects, skills, engagements, distinctions, certifications, elearningModules } from "./data";
 import { ArrowDownToLine, Award, ExternalLink, FileText, Heart, Mail, MapPin, Moon, Sun, X } from "lucide-react";
 import {
   copy,
   englishCertifications,
   englishDistinctions,
+  englishElearningModules,
   englishEngagements,
   englishExperiences,
   englishFormations,
@@ -29,6 +30,7 @@ export default function App() {
   const displayedEngagements = language === "en" ? englishEngagements : engagements;
   const displayedDistinctions = language === "en" ? englishDistinctions : distinctions;
   const displayedCertifications = language === "en" ? englishCertifications : certifications;
+  const displayedElearningModules = language === "en" ? englishElearningModules : elearningModules;
   const displayedSkills = language === "en" ? englishSkills : skills;
   const [filter, setFilter] = useState("all");
   const visibleProjects = displayedProjects.filter((p) => filter === "all" || p.categories.includes(filter));
@@ -36,6 +38,9 @@ export default function App() {
   const cvUrl = `${import.meta.env.BASE_URL}${cvFileName}`;
   const [cvOpen, setCvOpen] = useState(false);
   const cvDialogRef = useRef<HTMLDialogElement>(null);
+  const [selectedElearningId, setSelectedElearningId] = useState<string | null>(null);
+  const attestationDialogRef = useRef<HTMLDialogElement>(null);
+  const selectedElearningModule = displayedElearningModules.find((module) => module.id === selectedElearningId);
   const [theme, setTheme] = useState(
     () =>
       localStorage.getItem("theme") ||
@@ -62,6 +67,14 @@ export default function App() {
     if (cvOpen && !dialog.open) dialog.showModal();
     if (!cvOpen && dialog.open) dialog.close();
   }, [cvOpen]);
+
+  useEffect(() => {
+    const dialog = attestationDialogRef.current;
+    if (!dialog) return;
+
+    if (selectedElearningId && !dialog.open) dialog.showModal();
+    if (!selectedElearningId && dialog.open) dialog.close();
+  }, [selectedElearningId]);
 
   useEffect(() => {
     const targets = document.querySelectorAll(".reveal");
@@ -293,6 +306,38 @@ export default function App() {
                   </li>
                 ))}
               </ul>
+              <div className="elearning-section">
+                <h4 className="career-eyebrow">{text.elearningTitle}</h4>
+                <div className="elearning-list">
+                  {displayedElearningModules.map((module) => {
+                    const attestationUrl = `${import.meta.env.BASE_URL}attestations/${module.file}`;
+
+                    return (
+                      <article key={module.id} className="elearning-card">
+                        <div className="elearning-preview">
+                          <iframe
+                            src={`${attestationUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+                            title={`${text.elearningPreviewLabel}: ${module.title}`}
+                            loading="lazy"
+                            tabIndex={-1}
+                            aria-hidden="true"
+                          />
+                          <button
+                            className="elearning-preview-action"
+                            type="button"
+                            aria-label={`${text.elearningPreviewLabel}: ${module.title}`}
+                            onClick={() => setSelectedElearningId(module.id)}
+                          />
+                        </div>
+                        <div className="elearning-card-copy">
+                          <h5>{module.title}</h5>
+                          <p>{module.provider} · {module.duration}</p>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -347,6 +392,30 @@ export default function App() {
         <a className="btn primary cv-download" href={cvUrl} download={language === "en" ? "Lorelle-CV-English.pdf" : "Lorelle-CV-Francais.pdf"}>
           <ArrowDownToLine className="icon" aria-hidden="true" />{text.heroCv}
         </a>
+      </dialog>
+
+      <dialog
+        ref={attestationDialogRef}
+        className="cv-dialog attestation-dialog"
+        aria-labelledby="attestation-dialog-title"
+        onClose={() => setSelectedElearningId(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) attestationDialogRef.current?.close();
+        }}
+      >
+        <div className="cv-dialog-header">
+          <h2 id="attestation-dialog-title">{selectedElearningModule?.title ?? text.elearningTitle}</h2>
+          <button className="cv-dialog-close" type="button" aria-label={text.elearningClose} onClick={() => attestationDialogRef.current?.close()}>
+            <X className="icon" aria-hidden="true" />
+          </button>
+        </div>
+        {selectedElearningModule && (
+          <iframe
+            className="cv-document"
+            src={`${import.meta.env.BASE_URL}attestations/${selectedElearningModule.file}`}
+            title={`${text.elearningPreviewLabel}: ${selectedElearningModule.title}`}
+          />
+        )}
       </dialog>
 
       <footer className="footer"><span>© {new Date().getFullYear()} — {text.copyright}</span></footer>
