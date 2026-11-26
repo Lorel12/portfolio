@@ -41,5 +41,6 @@ Cette commande construit le site puis publie `dist/` sur la branche `gh-pages`. 
 - `src/data.ts` contient les coordonnées et le contenu français.
 - `src/locales.ts` contient les textes de l'interface et les traductions anglaises.
 - `public/cv_Lorelle_web.pdf` et `public/cv_Lorelle_web_en.pdf` sont les CV affichés dans l'aperçu et proposés au téléchargement.
+- Les attestations e-learning sont dans `public/attestations/`. Pour en ajouter une, placez le PDF dans ce dossier, ajoutez son identifiant, son titre, son organisme, sa durée et son nom de fichier à `elearningModules` dans `src/data.ts`, puis ajoutez son titre anglais à `englishElearningModules` dans `src/locales.ts`.
 
 Conservez les deux CV dans `public/` et gardez leurs noms de fichiers synchronisés avec `src/App.tsx`.
