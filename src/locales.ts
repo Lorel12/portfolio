@@ -1,4 +1,4 @@
-import { certifications, distinctions, engagements, experiences, formations, projects, skills } from "./data";
+import { certifications, distinctions, elearningModules, engagements, experiences, formations, projects, skills } from "./data";
 
 export type Language = "fr" | "en";
 
@@ -50,6 +50,9 @@ type Copy = {
   engagementNote: string;
   distinctionsLabel: string;
   certificationsLabel: string;
+  elearningTitle: string;
+  elearningPreviewLabel: string;
+  elearningClose: string;
   skillsIndex: string;
   skillsTitle: string;
   skillsNote: string;
@@ -112,6 +115,9 @@ export const copy = {
     engagementNote: "Solidarité, excellence, apprentissage continu.",
     distinctionsLabel: "DISTINCTIONS",
     certificationsLabel: "CERTIFICATIONS",
+    elearningTitle: "Module e-learning",
+    elearningPreviewLabel: "Agrandir l’attestation du module e-learning",
+    elearningClose: "Fermer l’attestation",
     skillsIndex: "05 / COMPÉTENCES",
     skillsTitle: "Ma boîte à outils.",
     skillsNote: "L’essentiel, sans détour.",
@@ -172,6 +178,9 @@ export const copy = {
     engagementNote: "Solidarity, excellence, continuous learning.",
     distinctionsLabel: "AWARDS",
     certificationsLabel: "CERTIFICATIONS",
+    elearningTitle: "E-learning modules",
+    elearningPreviewLabel: "Enlarge the e-learning module certificate",
+    elearningClose: "Close certificate",
     skillsIndex: "05 / SKILLS",
     skillsTitle: "Tools of the trade.",
     skillsNote: "Focused skills, built through practice.",
@@ -309,6 +318,11 @@ export const englishCertifications = [
   { ...certifications[4], title: "AI Ethics" },
   { ...certifications[5], title: "Introduction to AI" },
 ];
+
+export const englishElearningModules = elearningModules.map((module) => ({
+  ...module,
+  title: "Cybersecurity Best Practices",
+}));
 
 export const englishSkills = [
   { ...skills[0], group: "Artificial intelligence", items: ["Deep learning", "Computer vision", "Recommendation systems", "LLMs and AI agents", "PyTorch", "YOLOv8", "FAISS", "LangChain"] },

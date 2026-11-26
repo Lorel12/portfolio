@@ -150,6 +150,16 @@ export const certifications = [
   { title: "Introduction à l'IA", detail: "DataCamp", year: "2026", link: "https://www.datacamp.com/statement-of-accomplishment/course/f5e79378d6b8a1d5f0b1537a3f390fd6f80fd24a?raw=1" },
 ];
 
+export const elearningModules = [
+  {
+    id: "cybersecurity-best-practices",
+    title: "Les bonnes pratiques cyber",
+    provider: "hucency - Human centered cybersecurity",
+    duration: "30 min",
+    file: "attestation.pdf",
+  },
+];
+
 export const skills = [
   { group: "Intelligence artificielle", items: ["Apprentissage profond", "Vision par ordinateur", "Systèmes de recommandation", "LLM et agents IA", "PyTorch", "YOLOv8", "FAISS", "LangChain"] },
   { group: "Frontend", items: ["React", "TypeScript", "JavaScript", "CSS", "Design responsive"] },
